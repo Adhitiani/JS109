@@ -1,0 +1,12 @@
+//Loop over the elements of the array fish, logging each one. Terminate the loop immediately after logging the string 'Nemo'.
+
+
+let fish = ['Dory', 'Marlin', 'Gill', 'Nemo', 'Bruce'];
+
+for (let index = 0; index < fish.length; index += 1){
+   let currentElem = fish[index];
+   console.log(currentElem);
+   if(currentElem === 'Nemo') break;
+   
+   
+}
