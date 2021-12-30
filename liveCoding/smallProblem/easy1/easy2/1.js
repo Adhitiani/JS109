@@ -26,22 +26,15 @@ Algortim:
 
 Copy Code */
 
-/* function greetings(arr, obj) {
- let fullName = arr.join(' ');
- let arrOcc = Object.values(obj);
- let occupation = arrOcc.join(' ');
-
- return `Hello, ${fullName}! Nice to have a ${occupation} around.`
-
-} */
-
 function greetings(arr, obj) {
-  return `Hello, ${arr.join(' ')}! Nice to have a ${obj['title']} ${obj['occupation']} around.`
+ let fullName = arr.join(' ');
+ console.log(fullName);
 
 }
 
-
- console.log(
+console.log(greetings(["John", "Q", "Doe"]));
+/* console.log(
   greetings(["John", "Q", "Doe"], { title: "Master", occupation: "Plumber" })
 );
 // logs Hello, John Q Doe! Nice to have a Master Plumber around.
+ */
