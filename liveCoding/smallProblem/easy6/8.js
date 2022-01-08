@@ -22,7 +22,7 @@ starting point * idx + 1
 
 ALGORITM:
 1. create an empty array
-2. use iteration method:
+2. use a loop to create a sequence
    - starting number is the second argument
    - multiply it by the idx +1
    - push the result to the array
