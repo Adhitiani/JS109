@@ -76,3 +76,24 @@ function multiplyAllPairs2(arr1, arr2) {
 }
 
 console.log(multiplyAllPairs2([2, 4], [4, 3, 1, 2]));    // [2, 4, 4, 6, 8, 8, 12, 16]
+
+// determine the lenght of the new array
+//Alghoritm
+//1. create an empty array with the length of the result of multiplying the arr1 with arr 2
+// 2. iterate over arr1, in each iteration:
+      // - iterate over arr2, for each element:
+         // multiply it by arr1 current element and assign the result to the empty array at the current index location
+
+function multiplyAllPairs3(arr1, arr2) {
+  let result = new Array(arr1.length * arr2.length);
+  let idx = 0;
+  arr1.forEach(num1 => {
+    arr2.forEach(num2 => {
+      result[idx] = num2 * num1;
+      idx += 1;
+    });
+  });
+  console.log(result);
+};         
+
+console.log(multiplyAllPairs3([2, 4], [4, 3, 1, 2])); 
