@@ -97,3 +97,19 @@ function multiplyAllPairs3(arr1, arr2) {
 };         
 
 console.log(multiplyAllPairs3([2, 4], [4, 3, 1, 2])); 
+
+//using for loops
+
+function multiplyAllPairs4(arr1, arr2) {
+  let result = [];
+  
+  for (let idx1 = 0; idx1 < arr1.length; idx1 ++){
+    for (let idx2 = 0; idx2 < arr2.length; idx2 ++) {
+      result.push(arr2[idx2] * arr1[idx1]);
+    }
+  }
+  
+  return result.sort((a, b) => a - b);
+}
+
+
