@@ -281,14 +281,44 @@ function solve3(word) {
 
 
 
-console.log(solve3("suoidea")) //== 3
-console.log(solve3("iuuvgheaae")) //== 4
-console.log(solve3("ultrarevolutionariees")) //== 3
-console.log(solve3("strengthlessnesses")) //== 1
-console.log(solve3("cuboideonavicuare")) //== 2
-console.log(solve3("chrononhotonthuooaos")) //== 5
-console.log(solve3("iiihoovaeaaaoougjyaw")) //== 8
+// console.log(solve3("suoidea")) //== 3
+// console.log(solve3("iuuvgheaae")) //== 4
+// console.log(solve3("ultrarevolutionariees")) //== 3
+// console.log(solve3("strengthlessnesses")) //== 1
+// console.log(solve3("cuboideonavicuare")) //== 2
+// console.log(solve3("chrononhotonthuooaos")) //== 5
+// console.log(solve3("iiihoovaeaaaoougjyaw")) //== 8
 
+/*
+Longest vowel chain
+                                         
+The vowel substrings in the word codewarriors are o,e,a,i,o. The longest of these has a length of 2. 
+Given a lowercase string that has alphabetic characters only and no spaces, return the length of the longest vowel substring. Vowels are any of aeiou.
+ALGO
+- Get all the substring from the string
+- filter the substring that has only vowel
+- return the longest vowel substring
+*/
+
+function solve4(str) {
+  let substring = [];
+  for (let i = 0; i < str.length; i++) {
+    for (let j = i + 1; j <= str.length; j++) {
+      substring.push(str.slice(i,j));
+    };
+  }
+  const VOWEL = 'aiueo';
+  let arrVowel = substring.filter(str => str.split('').every(char => VOWEL.includes(char)));
+  
+  let longest = 0;
+  arrVowel.forEach(str => {
+    if(str.length > longest) longest = str.length;
+  })
+  return longest;
+
+}
+
+console.log(solve4("suoidea")) //== 3
 
 
 

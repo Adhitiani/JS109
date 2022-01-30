@@ -66,3 +66,38 @@ function wordToDigit1(sentence) {
 console.log(wordToDigit1('Please call me at five five five one two three four. Thanks.'));
 // "Please call me at 5 5 5 1 2 3 4. Thanks."
 
+/*Word to Digit
+
+Write a function that takes a sentence string as an argument and returns that string with every occurrence of a "number word" — 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine' — converted to its corresponding digit character.
+
+Problem:
+input: a string
+ouput: a string (every number word replace by its digit characters)
+
+EXAMPLE:
+see below
+
+DATA STRUCTURE
+input: string
+output: string
+
+
+ALGO
+1. create an array of english word, starting from zero
+2. replace the word in the string with the matching index of the word
+3. return the string
+
+*/
+
+function wordToDigit(str) {
+  let arr = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+  arr.forEach((word, idx) => {
+   str = str.replaceAll(arr[idx], idx)
+  });
+  
+  console.log(str);
+  
+}
+wordToDigit('Please call me at five five five one two three four. Thanks.');
+// "Please call me at 5 5 5 1 2 3 4. Thanks."
+

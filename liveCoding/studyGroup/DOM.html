@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Document Object Model</title>
+</head>
+<body>
+  <p id= "start"> DOM Manipulation </p>
+  <!--<p id = "para"></p>
+  <p class="nav">Paragraf 1:Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  <p class ="nav" >Paragraf 2:Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+  <div class = "nav"> This is a div tag. I'm the last in this class</div>
+  -->
+  <button type="button" onclick="changeFontSize()">Change Font Size</button>
+  <button type="button" onclick="changeFontStyle()">Change Font Style</button>
+  <button type="button" onclick="changeFontWeight()">Change Font Weight</button>
+  <button type="button" onclick="changeBackgroundColor()">Change Background Color</button>
+  
+
+  <script>
+    //document.getElementById("start").innerHTML = "Welcome to DOM manipulation!!"
+    //document.write(document.documentElement.getElement.getAttribute("lang"));
+    //document.body.style.background = "blue";
+    //let firstPara = document.getElementById("para");
+    //firstPara.style.background = "yellow";
+
+    /* let classVariable = document.getElementsByClassName("nav");
+    document.write("The length of the selected element is" + classVariable.length);
+    classVariable[0].style.background = "yellow";
+    classVariable[1].style.background = "blue";
+    classVariable[2].style.background = "green";
+    
+    classVariable[classVariable.length - 1].style.fontStyle = "italic";
+
+    for(let count in classVariable) {
+      classVariable[count].style.color = "green";
+    } */
+
+    function changeFontSize() {
+      document.getElementById("start").style.fontSize = "100px";
+    }
+
+    function changeFontStyle() {
+      document.getElementById("start").style.fontStyle = "italic";
+    }
+
+    function changeFontWeight() {
+      document.getElementById("start").style.fontWeight = "1000";
+    }
+
+    function changeBackgroundColor() {
+      document.getElementById("start").style.background = "yellow";
+    }
+
+
+
+  </script>
+  
+</body>
+</html>
