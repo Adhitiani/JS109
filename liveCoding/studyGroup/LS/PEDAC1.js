@@ -163,7 +163,65 @@ function differenceOfTwo(array) {
 };
 
 
+/////
+// The objective is to return all pairs of numbers from a given array of numbers that have a difference of 2.
+// The result array should be sorted in ascending order of values.
+// Assume there are no duplicate numbers in the array.
+// The order of the numbers in the input array should not matter.
 
+console.log(differenceOfTwo([1, 2, 3, 4])); // [[1, 3], [2, 4]]
+console.log(differenceOfTwo([4, 1, 2, 3])); // [[1, 3], [2, 4]]
+console.log(differenceOfTwo([1, 23, 3, 4, 7])); //  [[1, 3]]
+console.log(differenceOfTwo([4, 3, 1, 5, 6])); // [[1, 3], [3, 5], [4, 6]]
+
+console.log(differenceOfTwo([1, 4, 7, 10, 13])); // []
+
+/*
+P:
+input: an array of number
+output: a nested array
+
+rules:
+- return all pairs of numbers that have a difference of 2
+- The result array should be sorted in ascending order of values.
+- there are no duplocate number in the array
+- The order in the input shouldn't matter
+- if there are no pairs return an empty array
+
+E:
+[1, 2, 3, 4]
+[1, 3] [2,4]
+
+D:
+array --> array
+
+A:
+- create a 'result' and init to an empty array
+- sorted the array to ascending order
+- iterate over the sorted array
+  - for each of element:
+    - iterate over the rest of element
+    - if the difference between the next element witht the current element is two
+      - create an array with the two element and push it to the result array
+- return the result array      
+
+
+*/
+
+function differenceOfTwo(array) {
+  let result = [];
+  let sorted = array.slice().sort((a, b) => a - b);
+  //console.log(sorted);
+  for (let i = 0; i < sorted.length; i++) {
+    for (let j = i + 1; j <= sorted.length; j++) {
+      if(sorted[j] - sorted[i] === 2) {
+        result.push([sorted[i], sorted[j]]);
+      }
+    }
+  }
+  
+  return result;
+}
 
 
 

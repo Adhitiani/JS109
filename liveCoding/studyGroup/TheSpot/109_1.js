@@ -406,23 +406,47 @@ function countSubstring3(text, search) {
 
 
 
-function countSubstring2(str, substr) {
-  let subStrArr = [];
+/*Complete the solution so that it returns the number of times the search_text is found within the full_text.
+
+input: a string
+output: a string
+
+rules:
+- return the number of times the substring is found within the string
+
+E:
+
+A:
+- create a 'count' and init to 0
+- creat a 'temp' and init to an empty string
+- iterate over the array
+- in each iteration:
+  - concatenated the char to the temp
+  - if the temp contain the search-text, increment the count by 1
+  - update the 'temp' to ''
+- return counter  
+
+*/
+
+function solution(text, search) {
+  let count = 0;
   
-  for (let i = 0; i < str.length; i++) {
-    for (let j = i + 1; j <= str.length; j++) {
-      subStrArr.push(str.slice(i, j));
-    }
+  let subString = '';
+  
+  for (let i = 0; i < text.length; i++) {
+    subString += text[i];
+    if(subString.includes(search)) {
+       count += 1;
+       subString ='';
+       }
   }
-  
-  console.log(subStrArr);
-  
+   return count;
 }
 
-console.log(countSubstring1('aa_bb_cc_dd_bb_e_b', 'bb') === 2);
-console.log(countSubstring1('aaabbbcccc', 'ccc') === 1);
-console.log(countSubstring1('', 'abbb') === 0);
-console.log(countSubstring1('aaaaa', '') === -1);
-console.log(countSubstring1('aaaaa') === -1);
-console.log(countSubstring1('bbAaaaA', 'Aa') === 1);
+console.log(solution('aa_bb_cc_dd_bb_e', 'bb')) //# should return 2 since bb shows up twice
+console.log(solution('aaabbbcccc', 'ccc')) //# should return 1
 
+const solution1 = (text, search) => console.log(text.split(search)) // - 1;
+
+console.log(solution1('aa_bb_cc_dd_bb_e', 'bb')) //# should return 2 since bb shows up twice
+console.log(solution1('aaabbbcccc', 'ccc')) //# should return 1

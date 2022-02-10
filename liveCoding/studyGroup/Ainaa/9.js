@@ -393,3 +393,89 @@ p find_missing_letter(["b","d"]) == "c"
 p find_missing_letter(["a","b","d"]) == "c"
 p find_missing_letter(["b","d","e"]) == "c"
 
+/*Given an array of n positive integers and a positive integer s, 
+
+Original instruction: Find the minimal length of a continuous subarray of which the sum ≥ s. 
+# If there isn't one, return 0 instead.
+
+Reworded: Find the smallest subarray (return the length of the smallest subarray) from the subarrays from which the sum ≥ s. 
+If there isn't one, return 0 instead.
+
+
+
+console.log(minSubLength([2,3,1,2,4,3], 7)) 
+
+input: an array of number and a number
+output: a number
+
+rule:
+- return the smalles length of the subarray which the sum  ≥ s, s is the given number
+- if there is none return 0
+
+E:
+1 2 3, 8 --> 0
+1 - 1
+12 - 3
+123 - 6
+2
+23 - 5
+3
+
+D:
+arra --> number
+
+A:
+-find all the possible subarray
+- find only the subarray that has sum greater or equal to the given number
+- return the smallest length from the subarray
+
+find all the possible subarray:
+- create a'result and init to an empty array
+- iterate over the array
+- for each of the element
+  - iterate over the rest of the element
+  - in each iteration:
+    - compute the sum of the subarray
+    - if it's more or greater than the given number:
+      - push it to the result array
+
+find the smalles length from the subarray
+- create a 'smalles2' and init to 100
+- if the current length of the subarray is smaller than the 'smallest', reassign the 'smallest to the value of the current legnth of the subarray
+
+return the smallest
+
+*/
+
+function minSubLength(array, num) {
+  let subArr = [];
+  
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 0; j <= array.length; j++) {
+      let currSubArr = array.slice(i,j);
+      //console.log(currSubArr)
+      if(currSubArr.reduce((acc, ele) => acc + ele, 0) >= num) {
+        subArr.push(currSubArr);
+      };
+    }
+  }
+  
+  if (subArr.length === 0) return 0;
+  
+  let smallest = 100;
+ 
+ for (let i = 0; i < subArr.length; i++) {
+   if(subArr[i].length < smallest) {
+     smallest =subArr[i].length
+   }
+ }
+  return smallest;
+}
+
+
+console.log(minSubLength([2,3,1,2,4,3], 7))  // == 2 
+console.log(minSubLength([1, 10, 5, 2, 9], 9))  // == 1
+console.log(minSubLength([1, 11, 100, 1, 0, 200, 3, 2, 1, 250], 280))  // == 4
+console.log(minSubLength([1, 2, 4], 8)) // == 0
+console.log(minSubLength([1, 2, 4, 4, 5, 6, 7, 8, 8], 10)) // == 2
+console.log(minSubLength([1,2,4,3], 11))  // == 0

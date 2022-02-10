@@ -323,4 +323,63 @@ console.log(solve4("suoidea")) //== 3
 
 
 
+/*The vowel substrings in the word codewarriors are o,e,a,io. The longest of these has a length of 2. Given a lowercase string that has alphabetic characters only (both vowels and consonants) and no spaces, return the length of the longest vowel substring. Vowels are any of aeiou.
 
+P:
+input: a lowercase string
+output: a number
+
+rules:
+- the input is only alphabetic with no spaces
+- return the length of the longes vowel substring
+- vowel are aeiou
+
+E:
+codewarriors
+o, e, e, io --> io -- 2
+
+D
+string --> number
+
+A:
+- create a result and init to 0
+- create a temp string and init to an empty string
+- iterate over the string:
+- in each iteration:
+  - if the curr char is vowel concat it to the temp string
+  - if it's not, compare the length of the temp with the result number
+    - if the result number is smaller than the temp, update the result with the temp
+    - update the temp with ''
+- compare the temp with the result
+- return the bigger number
+
+
+*/
+
+function solve(string) {
+  let result = 0;
+  let temp = '';
+  
+  for (let i = 0; i < string.length; i++) {
+    if('aieuo'.includes(string[i])) {
+       temp += string[i];
+      if (temp.length > result) result = temp.length;
+       } else {
+       
+         temp = '';       
+       };
+  };
+
+  return result
+
+}
+
+
+
+console.log(solve("codewarriors")) //,2);
+console.log(solve("suoidea"))//,3);
+console.log(solve("ultrarevolutionariees"))//,3);
+console.log(solve("strengthlessnesses"))//,1);
+console.log(solve("cuboideonavicuare"))//,2);
+console.log(solve("chrononhotonthuooaos"))//,5);
+console.log(solve("iiihoovaeaaaoougjyaw"))//,8);
