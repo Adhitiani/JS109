@@ -64,3 +64,89 @@ function nextBiggerNum(num) {
     return nextBigNum;
   }; 
 };
+
+/*console.log(nextBiggerNum(9) === -1);
+console.log(nextBiggerNum(12) === 21);
+console.log(nextBiggerNum(513) === 531);
+console.log(nextBiggerNum(2017) === 2071);
+console.log(nextBiggerNum(111) === -1);
+console.log(nextBiggerNum(531) === -1);
+console.log(nextBiggerNum(123456789) === 123456798);
+console.log(nextBiggerNum(2341) === 2413);
+
+//You have to create a function that takes a posiitve integer number and return the next bigger number form by the digit.
+// 12 --> 21
+// 513 --> 531
+// 2017 --> 2071
+// if no bigger number can be compare using thos digits, return -1
+// 9 --> -1
+// 111 --> -1
+//531 --> -1
+
+P:
+input: a number
+output: the next bigger number form by the digit
+
+rules:
+- if no bigger number return -1
+
+E:
+see above
+
+D:
+number --> number
+
+A:
+- do the iteration
+- in each iteration:
+  - increment the number by 1
+  - compare the number with the given argument
+    - if the number has the same digit number as the given argument return the number
+
+Compare the digit numbers
+- convert both number to the string
+- convert both string to an array of char
+- convert the char to number
+- sort the number
+- iterate the first array:
+  - for each of char, compare it to the element with the same index position in the second array
+    - if it's not equal return false
+    - else return true.
+*/
+
+function isSameDigit(arr1, arr2) {
+  let arrStr1 = String(arr1).split('').map(Number).sort((a, b) => a - b);
+    //console.log(arrStr1);
+  let arrStr2 = String(arr2).split('').map(Number).sort((a, b) => a - b);
+    //console.log(arrStr2);
+   
+   for (let i = 0; i < arrStr1.length; i++) {
+     if(arrStr1[i] !== arrStr2[i]) {
+       return false;
+     }
+   }
+   return true;
+ }
+ 
+ function nextBiggerNum(num) {
+   
+   
+   for (let i = 1; i < Infinity; i++) {
+    if(isSameDigit(num, num + i)) {
+      return num + i;
+    } 
+   }
+   
+   return -1
+ }
+ 
+ 
+ /*console.log(nextBiggerNum(513) === 531);
+ console.log(nextBiggerNum(12) === 21);
+ console.log(nextBiggerNum(513) === 531);
+ console.log(nextBiggerNum(2017) === 2071);
+ */
+ console.log(nextBiggerNum(111) === -1);
+ console.log(nextBiggerNum(531) === -1);
+ //console.log(nextBiggerNum(123456789) === 123456798);
+ //console.log(nextBiggerNum(2341) === 2413);
