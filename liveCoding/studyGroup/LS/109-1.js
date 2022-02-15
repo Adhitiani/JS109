@@ -467,3 +467,140 @@ console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 15) ==
 console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 0) === ""); // true
 
 */
+
+/* 
+// You are given an array of strings and an integer k. Your task is to return the first longest string consisting of k consecutive strings taken from the array.
+
+// Example: 
+
+// longestConsec(["zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"], 2)
+// "abigailtheta"
+
+// n being the length of the string array, if n = 0 or k > n or k <= 0 return "".
+
+
+console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], 2) === "abigailtheta"); // true
+console.log(longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 1) === "oocccffuucccjjjkkkjyyyeehh"); // true
+console.log(longestConsec([], 3) === ""); // true
+console.log(longestConsec(["itvayloxrp","wkppqsztdkmvcuwvereiupccauycnjutlv","vweqilsfytihvrzlaodfixoyxvyuyvgpck"], 2) === "wkppqsztdkmvcuwvereiupccauycnjutlvvweqilsfytihvrzlaodfixoyxvyuyvgpck"); // true
+console.log(longestConsec(["wlwsasphmxx","owiaxujylentrklctozmymu","wpgozvxxiu"], 2) === "wlwsasphmxxowiaxujylentrklctozmymu"); // true
+console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], -2) === ""); // true
+console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 3) === "ixoyx3452zzzzzzzzzzzz"); // true
+console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 15) === ""); // true
+console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 0) === ""); // true
+
+
+P:
+input: an array of string and integer k
+ouput: a string
+
+rules:
+- return the first longest string
+- the string consisting of k number of consecuitve strings
+- if:
+  -the length of the array  = 0 or 
+  - the given integer greater than the length of the array or
+  - the given integer <= 0
+- return ''
+
+E:
+["zone", "abigail", "theta", "form", "libe", "zas"], 2
+"zoneabigail" slice : 0, 2
+"abigailtheta" 1, 3
+"thetaform" 2 4
+"formlibe"
+"libezas"
+
+D:
+array --> array
+
+A:
+
+EdgeCase:
+- if:
+  -the length of the array  = 0 or 
+  - the given integer greater than the length of the array or
+  - the given integer <= 0
+- return ''
+
+- get all the possible subarray
+  - create a 'subArray' and init to an empty array
+  - iterate over the array
+  - for each iteration extract the n number of element, n is the given input number, put the element togeteher as a string
+  - push the subarray to the 'subArray'
+  
+- find the first longest subarray
+  - create a result and init to an empty string
+  - create a tempLength and init to 0
+  - iterate over the subArray
+  - in each iteration:
+    - find the length of the subarray
+    - if th elength is grater than the 'tempLength' reassign the 'tempLenght' with the current subAray length and update the result with the current subarray
+- return the subArray    
+
+*/
+
+function longestConsec(array, num) {
+  if (array.length === 0 || num > array.length || num <= 0) return '';
+  
+  let subarrays = [];
+  for(let i = 0; i < array.length; i++) {
+    subarrays.push(array.slice(i, i + num).join(''));
+  };
+  
+  let result = '';
+  let tempLength = 0;
+  
+  for (let i = 0; i < subarrays.length; i++) {
+    if (subarrays[i].length > tempLength) {
+      tempLength = subarrays[i].length
+      result = subarrays[i]
+    }  
+  }
+  return result;
+};
+
+console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], 2) === "abigailtheta"); // true
+console.log(longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 1) === "oocccffuucccjjjkkkjyyyeehh"); // true
+console.log(longestConsec([], 3) === ""); // true
+console.log(longestConsec(["itvayloxrp","wkppqsztdkmvcuwvereiupccauycnjutlv","vweqilsfytihvrzlaodfixoyxvyuyvgpck"], 2) === "wkppqsztdkmvcuwvereiupccauycnjutlvvweqilsfytihvrzlaodfixoyxvyuyvgpck"); // true
+console.log(longestConsec(["wlwsasphmxx","owiaxujylentrklctozmymu","wpgozvxxiu"], 2) === "wlwsasphmxxowiaxujylentrklctozmymu"); // true
+console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], -2) === ""); // true
+console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 3) === "ixoyx3452zzzzzzzzzzzz"); // true
+console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 15) === ""); // true
+console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 0) === ""); // true
+
+/// more conciese way
+
+/*
+
+A:
+- create 'longest' and init to ''
+- iterate over the array
+- in each iteration:
+  - get the subarray and convert it to the substring
+  - compare the length of the current substring to the longest sub
+  - if it's greater reassign the longest with the current subArray
+- return the longest  
+
+*/
+
+function longestConsec1(array, num) {
+  if (array.length === 0 || num > array.length || num <= 0) return '';
+  
+  let longest = '';
+  
+  for (let i = 0; i < array.length-1; i++) {
+    let currSubstring = array.slice(i, i + num).join('');
+    console.log(currSubstring);
+    if (currSubstring.length > longest.length) {
+      longest = currSubstring;
+    }
+  }
+  
+  return longest;
+  
+};
+
+console.log(longestConsec1(["zone", "abigail", "theta", "form", "libe", "zas"], 2) === "abigailtheta"); 
+console.log(longestConsec1(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 3) === "ixoyx3452zzzzzzzzzzzz"); // true

@@ -450,3 +450,80 @@ const solution1 = (text, search) => console.log(text.split(search)) // - 1;
 
 console.log(solution1('aa_bb_cc_dd_bb_e', 'bb')) //# should return 2 since bb shows up twice
 console.log(solution1('aaabbbcccc', 'ccc')) //# should return 1
+
+//2
+// Problem Description
+// Given an array of strings, return a boolean indicating whether
+// at least three of the elements in the array have digits whose sum is
+// divisible by 3.
+
+// Elements of the argument array will be strings containing only string digits 0-9.
+
+// For example:
+// In the array ['35', '01110', '126', '57', '13'], 
+// the sum of the digits of each element will be: [8, 3, 9, 12, 4]
+// from the resulting sums, there are 3 that are evenly divisible by 3: [3, 9, 12]
+// so our function would return true.  See the below test cases for more examples.
+
+/*
+P:
+input: an array of strings
+output: a boolean
+
+rules:
+- return true if at least three of the elements in the array have digits whose sum is divisible by 3
+- the input arggument will obly array of string digit 0 -9
+
+E:
+// Test Cases
+console.log(threeByThree(['01112', '0111', '00030', '2043', '12043']));
+// true
+console.log(threeByThree(['01112', '2043', '12043']));
+// false
+console.log(threeByThree(['01112', '2043']));
+// false
+console.log(threeByThree(['93', '9', '1', '25', '1212']));
+// true
+
+D:
+array -> string --> number --> array --> bolean
+
+A:
+edge cases:
+- return false if the length of the input array is less than 3
+
+- find the sum of all digit string
+  - create a 'result' and init to an empty array
+  - iterate over the array
+  - for each of element:
+    - convert the string to an array of string element
+    - convert the string element to number
+    - get the sum of all the element
+- find only the sum that divisible by 3:    
+    - if the sum divisible by 3 push it to a new array
+  
+- return true if the result length are greater or equal to 3
+- return false otherwise 
+
+*/
+
+function threeByThree(array) {
+  let result = [];
+  array.forEach(str => {
+    let currSum = str.split('').map(Number).reduce((acc, ele) => acc + ele, 0);
+    if (currSum % 3 === 0) {
+      result.push(currSum);
+    }
+  });
+  return result.length >= 3;
+}
+
+// Test Cases
+console.log(threeByThree(['01112', '0111', '00030', '2043', '12043']));
+// true
+console.log(threeByThree(['01112', '2043', '12043']));
+// false
+console.log(threeByThree(['01112', '2043']));
+// false
+console.log(threeByThree(['93', '9', '1', '25', '1212']));
+// true

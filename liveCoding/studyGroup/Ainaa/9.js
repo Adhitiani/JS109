@@ -479,3 +479,123 @@ console.log(minSubLength([1, 11, 100, 1, 0, 200, 3, 2, 1, 250], 280))  // == 4
 console.log(minSubLength([1, 2, 4], 8)) // == 0
 console.log(minSubLength([1, 2, 4, 4, 5, 6, 7, 8, 8], 10)) // == 2
 console.log(minSubLength([1,2,4,3], 11))  // == 0
+
+/*
+
+# Find the missing letter
+# Write a method that takes an array of consecutive (increasing) letters as input and that returns the missing letter in the array.
+#
+# You will always get an valid array. And it will be always exactly one letter be missing. The length of the array will always be at least 2.
+#
+# The array will always contain letters in only one case.
+# Example:
+#
+const ALPHABETS = ['a', 'b'.....]
+const ALPHABETS = "abcdefghijklmnopqrstuvwxyz"
+index +1 = that's the same location as the alphabet
+
+you have to know what is the charCode for A, Z, a, z
+
+# ['a','b','c','d','f'] -> 'e'
+# ['O','Q','R','S'] -> 'P'
+# Use the English alphabet with 26 letters.
+p find_missing_letter(["a","b","c","d","f"]) == "e"
+p find_missing_letter(["O","Q","R","S"]) == "P"
+p find_missing_letter(["b","d"]) == "c"
+p find_missing_letter(["a","b","d"]) == "c"
+p find_missing_letter(["b","d","e"]) == "c"
+
+input: an array of increasing letters
+output: a string ( a missing letter in the array)
+
+rules:
+- the array will always valid
+- one letter always missing
+- the length of the arrays at least 2
+- the array will always contain letters in only one case
+
+E:
+find_missing_letter(["a","b","c","d","f"]) == "e"
+
+D :
+array --> string
+
+A:
+- create an 'alpha' and init to string of 26 letter
+- find the index of the first array element in lower case in the alpha
+- create the 'missingChar' and init to ''
+- iterate over the array:
+- in each iteration:
+  - check if the element of an array are the same as in the alpha index start form the firt index
+  - if it's not the same reassign missingCHar to the curr char in the 'alpha'
+  - stop the loop.
+
+- check if it's lowercase or uppercase
+  - if the first element in the input array in lower case is the same in the original array return the 'missingChar'
+  - else return 'missingchar' in Uppercase
+
+  
+*/
+
+function find_missing_letter(array) {
+  const ALPHA = "abcdefghijklmnopqrstuvwxyz"
+  let firstIdx = ALPHA.indexOf(array[0].toLowerCase());
+  //console.log(firstIdx)
+  
+  let missingChar = '';
+  
+  for (let i = 0; i < array.length; i++) {
+    //console.log(ALPHA[firstIdx + i])
+    //console.log(array[i]);
+    if(array[i].toLowerCase() !== ALPHA[firstIdx + i]) {
+      missingChar = ALPHA[firstIdx + i];
+      break;
+    }
+  }
+ 
+  if (array[0].toLowerCase() === array[0]) {
+    return missingChar;
+  } else {
+    return missingChar.toUpperCase();
+  }
+}
+
+console.log(find_missing_letter(["a","b","c","d","f"]) == "e")
+console.log(find_missing_letter(["O","Q","R","S"]) == "P")
+console.log(find_missing_letter(["b","d"]) == "c")
+console.log(find_missing_letter(["a","b","d"]) == "c")
+console.log(find_missing_letter(["b","d","e"]) == "c")
+
+
+// uppercase and lowercase lookup
+/*
+A:
+- create 'ALPHA' and assign it to 26 char Alphabet in lower and uppercase
+- find the index of the first element of the given array in the 'ALPHA' and assign it to 'firstIdx'
+
+- iterate over the array
+- in each iteration check:
+  - if the  element in the array is not the same as the element in the ALPHA based on the 'firstIdx'
+    - return the char
+
+*/
+
+function find_missing_letter1(array) {
+  const ALPHA = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  let firstIdx = ALPHA.indexOf(array[0]);
+  
+  for (let i = 0; i < array.length; i++) {
+    if(array[i] !== ALPHA[firstIdx + i]) {
+      return ALPHA[firstIdx + i];
+    }
+  }
+}
+
+console.log(find_missing_letter1(["a","b","c","d","f"]) == "e")
+console.log(find_missing_letter1(["O","Q","R","S"]) == "P")
+console.log(find_missing_letter1(["b","d"]) == "c")
+console.log(find_missing_letter1(["a","b","d"]) == "c")
+console.log(find_missing_letter1(["b","d","e"]) == "c")
+
+
+
