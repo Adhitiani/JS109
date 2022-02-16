@@ -78,6 +78,41 @@ console.log(sumOfSums([1, 5, 7, 3]));     // (1) + (1 + 5) + (1 + 5 + 7) + (1 + 
 console.log(sumOfSums([4]));              // 4
 console.log(sumOfSums([1, 2, 3, 4, 5]));  // 35
 
+// more conciese code
 
+/*
+- get all the possible leading combination and their sum and placed it in 'subArrSum'
+  - init 'subArrSum' to an empty array
+  - iterate over the input array
+  - in each iteration
+    - slice the element start from 0 to the current index + 1 and placed it in 'currSubArray'
+    - compute the sum of 'currSubArray' and push it to the 'subArrSum'
+
+
+- return the sum of all the sum of leading combination
+  - init 'sum' to 0
+  - iterate over the 'subArrSum'
+  - in each iteration:
+    - add the current 'sum' with the curr element
+  - return the sum  
+ 
+*/
+
+function sumOfSums1(array) {
+  let subArrSum = [];
+  
+  for (let i = 0; i < array.length; i++) {
+    let currSubArray = array.slice(0, i + 1);
+    subArrSum.push(currSubArray.reduce((sum, acc) => sum + acc, 0));
+  }
+  return subArrSum.reduce((sum, acc) => sum + acc, 0);
+}
+
+/// using map
+function sumOfSums(numbers) {
+  return numbers.map((number, idx) => numbers.slice(0, idx + 1)
+                                             .reduce((sum, value) => sum + value))
+                                             .reduce((sum, value) => sum + value);
+}
 
 

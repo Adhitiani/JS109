@@ -102,3 +102,23 @@ function alphabeticNumberSort2(array) {
   })
 }
 
+// without using sort
+function alphabeticNumberSort(numbers) {
+  const NUMBER_TEXT = [
+    'zero','one','two','three','four',
+    'five','six','seven','eight','nine', 
+    'ten','eleven','twelve','thirteen', 'fourteen',
+    'fifteen','sixteen', 'seventeen','eighteen','nineteen'
+  ];
+
+  const NUMBER_TEXT_SORTED = [...NUMBER_TEXT].sort();
+
+  let sortedNumbers = [];
+
+  numbers.forEach( number => {
+    let sortedIndex = NUMBER_TEXT_SORTED.indexOf(NUMBER_TEXT[number]);
+    sortedNumbers[sortedIndex] = number;
+  });
+
+  return sortedNumbers;
+}
