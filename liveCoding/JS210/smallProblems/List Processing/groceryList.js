@@ -95,3 +95,28 @@ function repeat(arr) {
   }
   return fruit;
 }
+
+A:
+- init 'fruit' to an empty array
+- iterate over the array:
+- for each of subarray:
+    - do the iteration subarray[1] number of times
+    - in each iteration push subarray[0] to 'fruit'
+- return 'fruit'    
+
+*/
+
+function buyFruit(fruitList) {
+  let fruit = [];
+  fruitList.forEach(subArray => {
+    for (let count = 0; count < subArray[1]; count++) {
+      fruit.push(subArray[0]);
+    }
+  });
+  
+  return fruit;
+}
+
+buyFruit([['apple', 3], ['orange', 1], ['banana', 2]]);
+// returns ["apple", "apple", "apple", "orange", "banana", "banana"]
+
