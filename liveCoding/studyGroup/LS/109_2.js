@@ -90,7 +90,7 @@ function getSubarrays(array) {
 // console.log(maxSequence([-32]) === 0); // true
 
 // console.log(maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4]) === 6); // true
-console.log(maxSequence([-2, 1, -7, 4, -10, 2, 1, 5, 4]) === 12); // true
+//console.log(maxSequence([-2, 1, -7, 4, -10, 2, 1, 5, 4]) === 12); // true
 
 // Find the length of the longest substring in the given string that is the same in reverse.
 
@@ -233,3 +233,231 @@ console.log(longestPalindrome("baa")); // 2
 console.log(longestPalindrome("aab")); // 2
 console.log(longestPalindrome("baabcd")); // 4
 console.log(longestPalindrome("baablkj12345432133d")); // 9
+
+// Find the length of the longest substring in the given string that is the same in reverse.
+
+// As an example, if the input was “I like racecars that go fast”, the substring (racecar) length would be 7.
+
+// If the length of the input string is 0, return value must be 0.
+
+// Example:
+// "a" -> 1
+// "aab" -> 2
+// "abcde" -> 1
+// "zzbaabcd" -> 4
+// "" -> 0
+
+/*
+P:
+input: a string
+output: a number (the length of the longest palindrome substring )
+
+rules:
+- if the input length is 0 return 0
+- one char is count as substring
+
+A:
+//get all the possible substrings and assign it to an array, 'substrings'
+  - init 'substrings' to an empty array
+  - iterate over the outer loop
+  - iterate over the inner loop
+    - for each of iteration:
+      - slice the string from the current index of outerloop to the index of innerloop (outerloop idx + 1)
+      - push the sliced substring to 'substrings'
+
+
+//get all the palindrome from the 'substrings' and assign it to an array 'palindromes'
+  -  init 'palindromes' to an empty array
+  - iterate over 'substrings'
+  - for each of substring
+    - check if it's palindrome --> if substring === reverse substring
+      get reverse substring -->convert the string to an array of char
+                               reverse the ordeer of the char
+                               convert back to string
+    - if it's palindrome push it to 'palindromes'                           
+ 
+//return the longest length of the palindrome substring
+  - sort the 'palindromes' based on the length in descending order
+  - return the first element of the sorted 'palindromes'
+*/
+
+function isPalindrome(str) {
+  return str === str.split(''). reverse().join('');
+}
+
+
+
+function longestPalindrome(str) {
+  let substrings = [];
+  for (let i = 0; i < str.length; i++) {
+    for (let j = i + 1; j <= str.length; j++) {
+      substrings.push(str.slice(i, j));
+    }
+  }
+ let palindromes = substrings.filter(isPalindrome);
+ return palindromes.filter(str => str.length % 2 === 0).length
+}
+
+console.log(longestPalindrome("a")); // 1
+console.log(longestPalindrome("aa")); // 2
+console.log(longestPalindrome("baa")); // 2
+console.log(longestPalindrome("aab")); // 2
+console.log(longestPalindrome("baabcd")); // 4
+console.log(longestPalindrome("baablkj12345432133d")); // 9
+
+/*// Find the length of the longest substring in the given string that is the same in reverse.
+
+// As an example, if the input was “I like racecars that go fast”, the substring (racecar) length would be 7.
+
+// If the length of the input string is 0, return value must be 0.
+
+// Example:
+// "a" -> 1
+// "aab" -> 2
+// "abcde" -> 1
+// "zzbaabcd" -> 4
+// "" -> 0
+
+console.log(longestPalindrome("a")); // 1
+console.log(longestPalindrome("aa")); // 2
+console.log(longestPalindrome("baa")); // 2
+console.log(longestPalindrome("aab")); // 2
+console.log(longestPalindrome("baabcd")); // 4
+console.log(longestPalindrome("baablkj12345432133d")); // 9
+
+P:
+input: a string
+output: a number ( the longest length of substring that is palindrome)
+
+rules:
+- palindrome is a string that is the same in reverse
+- if hte input string length is 0 return 0
+
+A:
+//get all the possible substrings 
+//assign them to an array 'substring' :
+  - init 'substring' to an empty array
+  - iterate over the string in outer loop
+  - iterate over the string in inner loop
+  - for each of iteration:
+    - slice the string from the outer loop idx to inner loop idx (outerloop idx + 1)
+    - assign the substring to 'currentSubstring'
+    - if the 'currentSubstring' is palindrome push 'currentSubstring' to 'substring'
+   
+// check if the substring is Palindrome:
+   - convert the substingr to an array of string
+   - reverse the array
+   - convert back to string
+   - if the string === reversed string return true
+   - else return false
+  
+//return the longest length from the palindrome substring
+  - sort the 'substring' in descending order based on the length of substrings
+  - return the first element length from the sorted substrings
+
+*/
+
+function isPalindrome(str) {
+  return str === str.split('').reverse().join('');
+};
+
+function longestPalindrome(str) {
+  let substring = [];
+  
+  for (let i = 0; i < str.length; i++) {
+    for (let j = i + 1; j <= str.length; j++) {
+      let currentSubstring = str.slice(i, j);
+      if(isPalindrome(currentSubstring)) {
+        substring.push(currentSubstring);
+      }
+    }
+  }
+  
+  return substring.sort((a,b) => b.length - a.length)[0].length;
+}
+
+console.log(longestPalindrome("a")); // 1
+console.log(longestPalindrome("aa")); // 2
+console.log(longestPalindrome("baa")); // 2
+console.log(longestPalindrome("aab")); // 2
+console.log(longestPalindrome("baabcd")); // 4
+console.log(longestPalindrome("baablkj12345432133d")); // 9
+
+// The maximum sum subarray problem consists in finding the maximum sum of a contiguous subsequence in an array of integers:
+
+// maxSequence [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+// //-- should be 6: [4, -1, 2, 1]
+// Easy case is when the array is made up of only positive numbers and the maximum sum is the sum of the whole array. If the array is made up of only negative numbers, return 0 instead.
+
+// Empty array is considered to have zero greatest sum. Note that the empty array is also a valid arg array.
+
+// Test Cases
+// console.log(maxSequence([]) === 0); // true 
+// console.log(maxSequence([11]) === 11); // true
+// console.log(maxSequence([-32]) === 0); // true
+
+// console.log(maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4]) === 6); // true
+//console.log(maxSequence([-2, 1, -7, 4, -10, 2, 1, 5, 4]) === 12); // true
+
+/*
+input: an array of integers
+output: a number (the biggest sum of the subarray)
+
+rules:
+- if every element is positive return the sum of all element
+- if every element is negative return 0
+- if input is an empty array return 0
+
+E:
+[1, -5, 7]
+1
+1 -5 -- -4
+1 -5 7 -- 3
+-5 
+-5 7 2
+7 7
+
+D:
+an array --> number
+
+A:
+// get all the possible subarrays
+// compute the sum of each the subarrays
+// assign them to an array, 'subarrays':
+   - init 'subarrays' to an emtpy array
+   - iterate over the array in outer loop
+   - iterate over the array in inner loop
+   - in each of iteration:
+     - slice the array from the outerloop current index to innerloopcurrent index (outerloop idx + 1)
+     - assign the current subarray to 'currSubarray'
+     - compute the sum of the 'currSubarray'
+     - push the sum of 'currSubarray' to 'subarrays'
+
+
+// return the biggest sum among the sum of the subarrays
+   sort the 'subarrays' in descending order
+    return the first element of the sorted 'subarrays'
+*/
+
+function maxSequence(arr) {
+  if (arr.every(num => num > 0)) return arr.reduce((sum, curr) => sum + curr, 0);
+  if (arr.length === 0) return 0;
+  if (arr.every(num => num < 0)) return 0;
+  
+  
+  let subarrays = [];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j <= arr.length; j++) {
+      let currSubarray = arr.slice(i, j);
+      subarrays.push(currSubarray.reduce((sum, curr) => sum + curr, 0))
+    }
+  }
+   return subarrays.sort((a, b) => b - a)[0]
+}
+
+console.log(maxSequence([]) === 0); // true 
+console.log(maxSequence([11]) === 11); // true
+console.log(maxSequence([-32]) === 0); // true
+
+console.log(maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4]) === 6); // true
+console.log(maxSequence([-2, 1, -7, 4, -10, 2, 1, 5, 4]) === 12); // true
