@@ -46,7 +46,7 @@ A:
 
 - slice the first element
 - slice the rest of the element start from the second element to the end
-- concatenated an emtpy array with the second element to the end  and the first element
+- concatenated the second element to the end  and the first element
 - retun the new array
 
 */
@@ -58,7 +58,7 @@ function rotateArray1(arr) {
   let first = arr.slice(0, 1);
   let restElem = arr.slice(1);
   
-  return [].concat(restElem, first);
+  return restElem.concat(first);
 }
 
 console.log(rotateArray());                         // undefined
@@ -89,11 +89,10 @@ function rotateArray2(arr) {
   if (!Array.isArray(arr)) return 'undefined';
   if (arr.length === 0) return [];
   
-  let newArr = arr.slice();
-  
-  let first = newArr.shift()
+   let newArr = arr.slice();
+  //let first = newArr.shift()
  
-  newArr.push(first);
+  newArr.push(newArr.shift());
   return newArr;
 }
 
