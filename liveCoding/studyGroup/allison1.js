@@ -129,9 +129,7 @@ console.log(isPangram("This thing is not a pangram.") === false);
 
 // -----------------------------------
 
-// PROBLEM - 02
-/*
-  Write a function that will take an input string and rearrange it in alphabetical order with the capitalized characters as the first character in its group. 
+ć
  P:
  input: a string
  output: a string
@@ -264,3 +262,155 @@ console.log(orderString("abBA") === "AaBb");
 // console.log(orderString("CbcBcbaA") === "AaBbbCcc");
 // console.log(orderString("xXfuUuuF") === "FfUuuuXx");
 // console.log(orderString("") === "");
+
+/*
+  Write a function that will take an input string and rearrange it in alphabetical order with the capitalized characters as the first character in its group. 
+
+console.log(orderString("abBA") === "AaBb");
+// console.log(orderString("AaaaaZazzz") === "AaaaaaZzzz");
+// console.log(orderString("CbcBcbaA") === "AaBbbCcc");
+// console.log(orderString("xXfuUuuF") === "FfUuuuXx");
+// console.log(orderString("") === "");
+
+P:
+input: a string
+output: a string ( rearrange char in alpha order with the capitalized char in the first char in its group
+
+rules:
+- return the rearrange char s in alpha bet order
+- empty string return empty string
+- always only one capitallized chars in the input string? yes
+
+E:
+
+abBA
+AaBb
+AaaaaZazzz
+AaaaaaZzzz
+
+D:
+string --> string
+array?
+
+A:
+//grouped together the same letter as a substring and put them in an array of substring
+  - convert the string to lowercase
+  - convert the string to an array of char
+  - sort the array of char and assign it to 'sortChar'
+  [a, a, a, a, a, a, z, z, z, z]
+  - init 'substring' to an empty array
+  - init 'tempSubstring' to the frist char of the array
+  - iterate over 'sortChar'
+    - strat the iteration at the index 1
+    - if the current char is the same as the last char in the 'tempSubstring' concatenated it with the 'tempSubstring'
+    - else
+      - push the 'tempSubstring to the array 'substring'
+      - put the 
+      - concatenated the currChar to 'tempSubstring'
+  - end the iteration
+  - push the remaining 'tempSubstring' to 'substring'
+  
+// Capitalized the first char of the substring
+[aaaaaa, zzzz]
+   - init 'capitalSubstring' to an empty array
+   - iterate over the 'substring
+     - slice the first char of the curr substring, capitalized it, and joined it with the remaining string from inedx 1 to the end
+     - push the new capitalized string to an array
+   - end iteration
+
+// convert the 'capitalSubstring' to a string
+// return the string
+
+*/
+
+function orderString1(str) {
+  let sortChar = str.toLowerCase().split('').sort();
+  let substring = [];
+  let tempSubstring = sortChar[0];
+  console.log(tempSubstring);
+  console.log(sortChar.length -1)
+  
+  for (let i = 1; i < sortChar.length; i++) {
+    let currChar = sortChar[i];
+    if(currChar === tempSubstring[tempSubstring.length -1]) {
+      tempSubstring += currChar;
+    } else {
+      substring.push(tempSubstring);
+      tempSubstring = '';
+      tempSubstring += currChar;
+    }
+  }
+   substring.push(tempSubstring);
+   
+  let capitalSubstring = [];
+  substring.forEach(substr => {
+    let capital = substr[0].toUpperCase() + substr.slice(1);
+    capitalSubstring.push(capital);
+  })
+  console.log(capitalSubstring.join(''));
+  return capitalSubstring.join('');
+}
+
+//console.log(orderString("abBA") === "AaBb");
+console.log(orderString("AaaaaZazzz") === "AaaaaaZzzz");
+//console.log(orderString("CbcBcbaA") === "AaBbbCcc");
+//console.log(orderString("xXfuUuuF") === "FfUuuuXx");
+//console.log(orderString("") === "");
+
+//Note:
+// please don't make any assumption yourself, ask the interviewer
+// stick on the algoritm, if the output doesn't look like what you expected check the algoritm first
+// 
+
+
+// no need to make it lowercase
+//Grouped the same letter together including the upper and lower case as a string
+/*
+ - init 'substringArr' to an empty array
+ - init 'tempSubstring' to the first char of input string
+ - iterate over the string
+   - start the iteration at index 1
+   - if the current char in lower case is the same as the last char in lowercase of 'tempSubstring' concatenate the curr char to the 'tempSubstirng'
+   - else
+    - push the 'tempSubsting' to 'substringArr'
+    - reassing 'temSubstring' to an empty string
+    - push the curr char to 'tempSubstring'
+ - end of iteration
+ - push 'tempSubstring' to substring
+ 
+ 
+
+*/
+///DOEST WORK BECAUSE THE UPPERCASE OF THE SAME LETTER MIXED UP WITH THE OTHER LETTER: THE PROBLEM WILL BE GETTING MORE OUT OF HAND!!
+// sort the char in the substring
+/*
+- init 'sortSubstring' to an empty array
+ - iterate over the array
+   - conver the substring to an array of char
+   - sort the arr of char
+   - put them back to a string
+   - push it to an array
+ - end of iteration
+*/
+// sort the 'substring' and conver it to string
+// return the string
+
+function orderString(str) {
+  console.log(str.split('').sort());
+  let substringArr = [];
+  let tempSubstring = str[0];
+  
+  for (let i = 1; i < str.length; i++) {
+    let currChar = str[i];
+    
+    if (currChar.toLowerCase() === tempSubstring[tempSubstring.length -1]) {
+      tempSubstring += currChar;
+    } else {
+      substringArr.push(tempSubstring);
+      tempSubstring = '';
+      tempSubstring += currChar;
+    }
+  }
+  substringArr.push(tempSubstring);
+  console.log(substringArr);
+}
