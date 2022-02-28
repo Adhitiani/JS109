@@ -56,21 +56,3 @@ array [1, 2, 3]
 sub-array 
 [[1], [2], [3]]
 */
-
-function anagrams(word, arrWords) {
-  let result = [];
-  let wordSort = word.split('').sort().join('');
-  
-  arrWords.forEach(substring => {
-    let subStrSort = substring.split('').sort().join('');
-    if (subStrSort === wordSort) {
-     result.push(substring);
-    }
-  })
-  
-  return result;
-}
-
-console.log(anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada'])) //=> ['aabb', 'bbaa']
-console.log(anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer'])) // => ['carer', 'racer'])
-console.log(anagrams('laser', ['lazing', 'lazy',  'lacer'])) //=> []
