@@ -62,3 +62,60 @@ console.log(differenceOfTwo([1, 23, 3, 4, 7])); //  [[1, 3]]
 console.log(differenceOfTwo([4, 3, 1, 5, 6])); // [[1, 3], [3, 5], [4, 6]]
 console.log(differenceOfTwo([2, 4])); // [[2, 4]]
 console.log(differenceOfTwo([1, 4, 7, 10, 13])); // []
+
+/*PROBLEM DESCRIPTION
+
+The objective is to return all pairs of numbers from a given array of numbers that have a difference of 2. 
+
+The result array should be sorted in ascending order of values. 
+Assume there are no duplicate numbers in the array. 
+The order of the numbers in the input array should not matter. 
+
+
+*/
+
+/*
+Input:  an array of numbers - in no order
+
+Output:  a nested array -  each element is a pari of numbers
+
+Examples/Edge Cases/Rules/Check ALL Examples
+differenceOfTwo([1, 4, 7, 10, 13])); // []
+differenceOfTwo([1, 2, 3, 4])); // [[1, 3], [2, 4]]
+
+Algorithm
+create an `output` array []
+sort the input array in descending order
+iterate over the array one digit at a time - outerIdx
+  iterate over the array from outerIdx + 1 to the end of the input array
+    if element/digit at arr[outerIdx] - arr[innerIdx] = 2 
+      then add the pair of array element to output array as an array
+      
+sort the output array ascending order by comparing the first element of each inner nest array
+  a.output[0] - b.output[0] 
+
+return output
+*/
+
+function differenceOfTwo(arr) {
+  let output = [];
+  arr.sort((a, b) => a - b);
+  // console.log(arr);
+  
+  for (let outerIdx = 0; outerIdx < arr.length; outerIdx += 1) {
+    for (let innerIdx = outerIdx + 1; innerIdx < arr.length; innerIdx += 1) {
+      if (arr[innerIdx] - arr[outerIdx] === 2) output.push([arr[outerIdx], arr[innerIdx]]);
+    }
+  }
+  // console.log(output);
+  return output;
+  
+}
+
+
+console.log(differenceOfTwo([1, 2, 3, 4])); // [[1, 3], [2, 4]]
+console.log(differenceOfTwo([4, 1, 2, 3])); // [[1, 3], [2, 4]]
+console.log(differenceOfTwo([1, 23, 3, 4, 7])); //  [[1, 3]]
+console.log(differenceOfTwo([4, 3, 1, 5, 6])); // [[1, 3], [3, 5], [4, 6]]
+console.log(differenceOfTwo([2, 4])); // [[2, 4]]
+console.log(differenceOfTwo([1, 4, 7, 10, 13])); // []
