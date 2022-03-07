@@ -56,10 +56,10 @@ function commonPrefix(arr) {
 
 // Test Cases
 console.log(commonPrefix(["flower", "flow", "flight"]) === "fl"); // true
-//console.log(commonPrefix(["dog", "racecar", "car"])  === ""); // true
-//console.log(commonPrefix(["interspecies", "interstellar", "interstate"])  === "inters"); // true
-//console.log(commonPrefix(["throne", "dungeon"]) === ""); // true
-//console.log(commonPrefix(["throne", "throne"]) === "throne"); // true
+console.log(commonPrefix(["dog", "racecar", "car"])  === ""); // true
+console.log(commonPrefix(["interspecies", "interstellar", "interstate"])  === "inters"); // true
+console.log(commonPrefix(["throne", "dungeon"]) === ""); // true
+console.log(commonPrefix(["throne", "throne"]) === "throne"); // true
 
 // Problem Description
 // Write a function to find the longest common prefix string amongst an array of strings.
