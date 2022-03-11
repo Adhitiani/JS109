@@ -150,3 +150,31 @@ function isSameDigit(arr1, arr2) {
  console.log(nextBiggerNum(531) === -1);
  //console.log(nextBiggerNum(123456789) === 123456798);
  //console.log(nextBiggerNum(2341) === 2413);
+
+ function isSameDigit(num1, num2) {
+  let newNum1 = String(num1).split('').sort((a,b) => a - b).join('');
+  let newNum2 = String(num2).split('').sort((a,b) => a - b).join('');
+
+  return newNum1 === newNum2;
+}
+
+function nextBiggerNum(num) {
+
+  for (let i = 1; i < num * 10; i++) {
+   let currNum = num + i
+   if (isSameDigit(num, currNum)) {
+     return currNum;
+   } 
+  }
+  return -1
+}
+
+ console.log(nextBiggerNum(513) === 531);
+
+ console.log(nextBiggerNum(12) === 21);
+ console.log(nextBiggerNum(513) === 531);
+ console.log(nextBiggerNum(2017) === 2071);
+ console.log(nextBiggerNum(111) === -1);
+ console.log(nextBiggerNum(531) === -1);
+ console.log(nextBiggerNum(123456789) === 123456798);
+ console.log(nextBiggerNum(2341) === 2413);

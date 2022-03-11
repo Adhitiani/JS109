@@ -45,3 +45,16 @@ function arrayEquals(arr1, arr2) {
 console.log(arrayEquals([1, 2, 3], [1, 3]));
 
 console.log(arrayEquals([1, 2, 3, 6, 5, 4], [4, 5, 6, 3, 2, 1]));
+
+// compare usign string
+function arrayEquals(arr1, arr2) {
+  if(arr1.length !== arr2.length) return false;
+  
+  let sorted1 = arr1.slice().sort().join('');
+  let sorted2 = arr2.slice().sort().join('');
+
+  return sorted1 === sorted2;
+}
+
+console.log(arrayEquals([1, 2, 3], [1, 3, 5]));
+//console.log(arrayEquals([1, 2, 3, 6, 5, 4], [4, 5, 6, 3, 2, 1]));
