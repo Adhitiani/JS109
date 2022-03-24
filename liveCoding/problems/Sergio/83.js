@@ -70,3 +70,45 @@ function solution(str) {
   result.push(tempString);
   return result.join(' ')
 }
+
+/*Complete the solution so that the function will break up camel casing, using a space between words.
+
+Example
+
+"camelCasing"  =>  "camel Casing"
+"identifier"   =>  "identifier"
+""             =>  ""
+
+//convert the string into array
+- iterate over the array
+  - if the currChar is Uppercase then insert the empty space at that index
+- end iteration
+- convert back the array to string
+return the string
+*/
+
+function solution(str) {
+  let arrChar = str.split('');
+  for (let i = 0; i < arrChar.length; i++) {
+    if(arrChar[i].toUpperCase() === arrChar[i]) {
+      arrChar[i] = ' ' + arrChar[i];
+    }
+  }
+return arrChar.join('');
+}
+
+console.log(solution('camelCasing'), 'camel Casing', 'Unexpected result');
+console.log(solution('camelCasingTest'), 'camel Casing Test', 'Unexpected result');
+
+//Using Splice
+
+function solution(string) {
+  let arrChar = string.split('')
+  for (let i = 0; i < arrChar.length; i++) {
+    if (arrChar[i] === arrChar[i].toUpperCase()) {
+      arrChar.splice(i, 0, ' ')
+      i++
+    }
+  }
+  return arrChar.join('')
+}
