@@ -57,4 +57,4 @@ function arrayEquals(arr1, arr2) {
 }
 
 console.log(arrayEquals([1, 2, 3], [1, 3, 5]));
-//console.log(arrayEquals([1, 2, 3, 6, 5, 4], [4, 5, 6, 3, 2, 1]));
+console.log(arrayEquals([1, 2, 3, 6, 5, 4], [4, 5, 6, 3, 2, 1]));
