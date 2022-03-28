@@ -1,0 +1,7 @@
+// https://www.codewars.com/kata/5bb148b840196d1be50000b1 -- done
+
+// https://www.codewars.com/kata/5bcd90808f9726d0f6000091 -- done
+
+// https://www.codewars.com/kata/59fd6d2332b8b9955200005f/javascript -- done
+
+// https://www.codewars.com/kata/5411c4205f3a7fd3f90009ea/train/javascript -- 
